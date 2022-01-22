@@ -3,7 +3,7 @@ const form = document.querySelector('form');
 
 const createPost = async (e) =>
 {
-  e.preventDefault();
+  e.preventDefault(e);
 
   const doc = {
     title: form.title.value,
