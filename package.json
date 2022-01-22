@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Javascript Blog",
+  "main": "index.html",
+  "dependencies": {
+    "json-server": "^0.16.3",
+    "parcel": "^2.2.0"
+  },
+  "scripts": {
+    "start": "json-server db.json"
+  },
+  "keywords": [
+    "js",
+    "test"
+  ],
+  "author": "Juli",
+  "license": "ISC"
+}

@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+/* base styles */
+body {
+  background:  rgb(213, 220, 219);
+  font-family: 'Roboto';
+  color: #444;
+  max-width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+}
+nav {
+  
+ border-radius: 1rem;
+  margin: 1rem auto;
+  height:7rem ;
+}
+nav p{
+  margin: 1rem 1rem auto;
+  font-size: 3rem;
+  font-family: 'Roboto';
+  color: #444;
+}
+nav a {
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  background: #444;
+  padding: 12px;
+  margin: 1rem 1rem auto;
+ 
+}
+
+input, textarea {
+  display: block;
+  margin: 16px 0;
+  padding: 6px 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  
+}
+textarea {
+  min-height:200px;
+}
+.container-fluid{
+  
+font-family: 'Roboto';
+color: #444;
+border-radius: 1rem;
+}
+.post {
+  padding: 15px;
+  background: rgb(213, 220, 219);
+  border-radius: 10px;
+  margin: 1rem auto;
+  width: 90%;
+  max-height: 55rem;
+  
+}
+.post a {
+  color: #363bcc;
+}
+.img{
+  max-width: 90%;
+  border-radius: 5px;
+  margin: 1rem auto;
+ height: 20rem;
+  
+}
+
+.btn{
+  
+  margin: 0rem 1rem auto;
+
+}
+  .pagination{
+    margin: 1rem 1rem 1rem auto;    
+    max-width:35%;
+  }
+
+  .div-container{
+    max-height:100%;
+    max-width : 100%;
+  
+   padding: 5rem ;
+  
+    }
+.detailsImg{
+  width: 95%;
+}
