@@ -13,17 +13,19 @@ const parseRoute = url => Object.fromEntries( url.replace( `${ dbUrl }?`, "" ).s
 
 const pageNumber = url => parseRoute( url ).page || 1;
 
-async function fetchPosts (url) {
+const fetchPosts =url=> {
     container.innerHTML = ``;
     fetch(url)
         .then( res => res.json().then( data => [ data, res.headers.get( "Link" ) ] ))
-        // .catch((error)=>{console.log(error)})
+     
         .then( pageData => {
             pageData[ 0 ].forEach( posts => renderPosts( posts ) );
 
             
             if(pageData[0].length===0){
-                document.getElementById( "content" ).innerHTML = "<h3>Page Not Found Search Again</h3>";
+                alert('Not found , search again')
+                console.log('Search value not found')
+                document.location= 'index.html'
             }
              if ( !pageData[ 1 ]) { document.getElementById( "page-number" ).innerHTML = "Page 1 of 1"; }
             else {
@@ -75,9 +77,7 @@ const searchPosts = searchFormSubmission => {
     searchFormSubmission.preventDefault();
 
     let filterValue = searchFormSubmission.target.elements.filter.value ; //FilterButton
-
     let queryValue =searchFormSubmission.target.elements.query.value;//SearchInput
-
     
 
  pageUrl= `http://localhost:3000/posts?${ filterValue}=${queryValue  }&_limit=${ searchFormSubmission.target.elements.limit.value }&_page=1`;
