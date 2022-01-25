@@ -24,36 +24,60 @@ let template = ' ';
   </div>
    `
   containerDiv.innerHTML= template;
-
-
 };
-deleteBtn.addEventListener('click', async () => {
-  const res = await fetch('http://localhost:3000/posts/' + id, {
-    method: 'DELETE'
-  });
-  window.location.replace("index.html");
-})
 
-updateBtn.addEventListener('click', async (e) => {
-  e.preventDefault(e);
 
-  const data = {
-    
-    title: putForm.title.value,
-           
-    content: putForm.content.value,
-    author: putForm.author.value,
 
+const Response =async res => {
+  const isJson = res.headers.get('content-type')?.includes('application/json');
+  const data = isJson && await res.json();
+
+  // check for error res
+  if (!res.ok) {
+      // get error message from body or default to res status
+      const error = (data && data.message) || res.status;
+      return Promise.reject(error);
   }
 
-  const res = await fetch('http://localhost:3000/posts/' + id, {
-    method: 'PUT',
-	headers:{
-	'Content-Type':'application/json'
-	},
-	body: JSON.stringify(data)
-})
-  window.location.replace("index.html");
-})
+}
 
+ const deletePost =async () => {
+  await fetch('http://localhost:3000/posts/' + id, {
+    method: 'DELETE'
+  })
+  .then(Response)
+.catch(error => {
+   
+    console.error('There was an error!', error);
+});
+
+  window.location.replace("index.html");
+}
+deleteBtn.addEventListener('click',deletePost)
+
+
+
+ const UpdatePost =async (e) => {
+  e.preventDefault(e);
+ const data = {    
+    title: putForm.title.value,           
+    content: putForm.content.value,
+    author: putForm.author.value,
+  }
+  const putPost ={
+    method: 'PUT',
+	headers:{	'Content-Type':'application/json'	},
+	body: JSON.stringify(data)
+}
+ await fetch('http://localhost:3000/posts/' + id,putPost )
+ .then(Response)
+.catch(error => {
+ 
+  console.error('There was an error!', error);
+});
+ 
+  // window.location.replace("index.html");
+}
+
+updateBtn.addEventListener('click',UpdatePost)
 window.addEventListener('DOMContentLoaded', renderDetails);

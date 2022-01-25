@@ -16,12 +16,14 @@ const pageNumber = url => parseRoute( url ).page || 1;
 async function fetchPosts (url) {
     container.innerHTML = ``;
     fetch(url)
-        .then( res => res.json().then( data => [ data, res.headers.get( "Link" ) ] ) )
+        .then( res => res.json().then( data => [ data, res.headers.get( "Link" ) ] ))
+        // .catch((error)=>{console.log(error)})
         .then( pageData => {
             pageData[ 0 ].forEach( posts => renderPosts( posts ) );
 
+            
             if(pageData[0].length===0){
-                document.getElementById( "blogpost" ).innerHTML = "Page Not Found Search Again";
+                document.getElementById( "content" ).innerHTML = "<h3>Page Not Found Search Again</h3>";
             }
              if ( !pageData[ 1 ]) { document.getElementById( "page-number" ).innerHTML = "Page 1 of 1"; }
             else {
