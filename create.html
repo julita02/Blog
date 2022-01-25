@@ -16,16 +16,17 @@
   <h1>Create a New Blog</h1>
 
   <form>
-    <input class="form-control" minlength="10" type="text" name="title" required placeholder="Blog title">
+    <input class="form-control" minlength="5" type="text" name="title" pattern=".{5,}" required
+      title="10 characters minimum" placeholder="Blog title">
     <input class="form-control" type="url" name="image" required placeholder="Image URL">
 
     <textarea name="body" required placeholder="Blog body"></textarea>
-    <input class="form-control" minlength="20" maxlength="1000" type="text" name="author" required
+    <input class="form-control" pattern=".{4,10}" required title="5 to 10 characters" type="text" name="author"
       placeholder="Author Name">
 
 
+    <button class="btn btn-primary">Create </button>
 
-    <button class="btn btn-primary">Create</button>
   </form>
 
   <script src="src/create.js"></script>

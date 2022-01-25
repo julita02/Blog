@@ -14,20 +14,24 @@
 <body>
   <nav class="navbar bg-light">
     <p class="start"> Blog </p>
+
     <div class="end"><a href="/create.html">Add a new blog</a>
       <button class="btn btn-danger delete"> DELETE</button>
+      <button class="btn btn-primary update"> Update
+
+      </button>
     </div>
   </nav>
 
   <div class="container-fluid bg-light">
 
     <div class="row row-cols">
-      <div class="col-8 div-container">
+      <div class="col-8 div-container" id="putForm">
 
       </div>
-      <div class="col-4">
+      <!-- <div class="col-4"> -->
 
-        <form class="putForm">
+      <!-- <form class="putForm">
 
           <input class="form-control" minlength="10" type="text" name="title" required placeholder="Blog title">
           <input class="form-control" type="url" name="image" required placeholder="Image URL">
@@ -38,13 +42,12 @@
 
 
 
-          <button class="btn btn-danger update"> Update
+          
+        </form> -->
 
-          </button>
-        </form>
-      </div>
     </div>
-    <script src="src/readPost.js"></script>
+  </div>
+  <script src="src/readPost.js"></script>
 </body>
 
 </html>

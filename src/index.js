@@ -13,39 +13,43 @@ const parseRoute = url => Object.fromEntries( url.replace( `${ dbUrl }?`, "" ).s
 
 const pageNumber = url => parseRoute( url ).page || 1;
 
-const fetchPosts = url => {
+async function fetchPosts (url) {
     container.innerHTML = ``;
-    fetch( url )
+    fetch(url)
         .then( res => res.json().then( data => [ data, res.headers.get( "Link" ) ] ) )
         .then( pageData => {
             pageData[ 0 ].forEach( posts => renderPosts( posts ) );
-             if ( !pageData[ 1 ] ) { document.getElementById( "page-number" ).innerHTML = "Page 1 of 1"; }
+
+            if(pageData[0].length===0){
+                document.getElementById( "blogpost" ).innerHTML = "Page Not Found Search Again";
+            }
+             if ( !pageData[ 1 ]) { document.getElementById( "page-number" ).innerHTML = "Page 1 of 1"; }
             else {
              document.getElementById( "page-number" ).innerHTML = `Page ${ pageNumber( pageUrl) } of ${ pageNumber( parseLinkHeader( pageData[ 1 ] ).last ) }`;
-             }
-        } );
+             }             
+            //  console.log(pageData)
+        } );      
 }
 
-const renderPosts = posts => {
-   
+const renderPosts = posts => {  
     let postBlog = document.createElement( "div" );
-
     postBlog.classList.add( "col" );
-
     postBlog.innerHTML = `
     <div class="post">
     
       
     <div class=""> <img class="col img" src="${posts.imageUrl}"></div>   
     <h2> ${posts.title}  </h2>
-    <div class="col ">${posts.content.slice(0,100)}&nbsp; <a href = "/readPost.html?id=${posts.id}"> ... read more </a><hr>
+    <div class="col ">${posts.content.slice(0,50)}&nbsp; <a href = "/readPost.html?id=${posts.id}"> ... read more </a><hr>
     <h6>Author: ${posts.author}  </h6>
     </div></div>    
            </div>  
-
     `    
     container.append( postBlog );
+    // console.log(posts)
+    
 }
+
 
 
 const paginate = direction => {
@@ -58,14 +62,32 @@ const paginate = direction => {
                 fetchPosts( headersObject[ direction ] );
             }
         }
+
     } );
+   
+
 }
+
 
 const searchPosts = searchFormSubmission => {
     searchFormSubmission.preventDefault();
- pageUrl= `http://localhost:3000/posts?${ searchFormSubmission.target.elements.filter.value }=${ searchFormSubmission.target.elements.query.value }&_limit=${ searchFormSubmission.target.elements.limit.value }&_page=1`;
-    fetchPosts( pageUrl);
+
+    let filterValue = searchFormSubmission.target.elements.filter.value ; //FilterButton
+
+    let queryValue =searchFormSubmission.target.elements.query.value;//SearchInput
+
+    
+
+ pageUrl= `http://localhost:3000/posts?${ filterValue}=${queryValue  }&_limit=${ searchFormSubmission.target.elements.limit.value }&_page=1`;
+    fetchPosts(pageUrl );
+    
+    console.log(pageUrl)
 }
+
+
+
+
+
 
 document.addEventListener( "DOMContentLoaded", () => {
     fetchPosts( pageUrl);

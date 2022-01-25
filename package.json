@@ -15,5 +15,13 @@
     "test"
   ],
   "author": "Juli",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julita02/Blog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/julita02/Blog/issues"
+  },
+  "homepage": "https://github.com/julita02/Blog#readme"
 }

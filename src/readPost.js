@@ -2,7 +2,7 @@
 const containerDiv = document.querySelector('.div-container');
 
 const id = new URLSearchParams(window.location.search).get('id');
-const putForm = document.querySelector('.putForm');
+const putForm = document.getElementById('putForm');
 
 const deleteBtn = document.querySelector('.delete');
 const updateBtn = document.querySelector('.update');
@@ -11,15 +11,15 @@ const updateBtn = document.querySelector('.update');
 const renderDetails = async()=>{
   const res = await fetch('http://localhost:3000/posts/' + id);
   const post = await res.json();
-  console.log(post);
+  // console.log(post);
 let template = ' ';
    template += ` 
   <div class="row row-cols">
  
   <div class="col"> <img class="img col" src="${post.imageUrl}"></div>  
-  <div class="col"><h2>${post.title} </h2> <hr>
-  <p>${post.content}</p><hr>
-  <h6>Author: ${post.author}  </h6>
+  <div contenteditable="true" name=title class="col"><h2>${post.title} </h2> <hr>
+  <div contenteditable="true" name=content>${post.content}</div><hr>
+  <h6 contenteditable="true" name=author >Author: ${post.author}  </h6>
   <div>
   </div>
    `
@@ -40,8 +40,8 @@ updateBtn.addEventListener('click', async (e) => {
   const data = {
     
     title: putForm.title.value,
-    imageUrl : putForm.image.value,        
-    content: putForm.body.value,
+           
+    content: putForm.content.value,
     author: putForm.author.value,
 
   }
