@@ -39,8 +39,7 @@ const renderPosts = posts => {
     let postBlog = document.createElement( "div" );
     postBlog.classList.add( "col" );
     postBlog.innerHTML = `
-    <div class="post">
-    
+    <div class="post"> 
       
     <div class=""> <img class="col img" src="${posts.imageUrl}"></div>   
     <h2> ${posts.title}  </h2>

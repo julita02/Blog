@@ -26,8 +26,6 @@ let template = ' ';
   containerDiv.innerHTML= template;
 };
 
-
-
 const Response =async res => {
   const isJson = res.headers.get('content-type')?.includes('application/json');
   const data = isJson && await res.json();
@@ -76,7 +74,7 @@ deleteBtn.addEventListener('click',deletePost)
   console.error('There was an error!', error);
 });
  
-  // window.location.replace("index.html");
+  window.location.replace("index.html");
 }
 
 updateBtn.addEventListener('click',UpdatePost)

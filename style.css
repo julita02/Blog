@@ -74,19 +74,18 @@ border-radius: 1rem;
   
   margin: 0rem 1rem auto;
 
-}
-  .pagination{
-    margin: 1rem 1rem 1rem auto;    
-    max-width:35%;
-  }
+} 
 
   .div-container{
     max-height:100%;
-    max-width : 100%;
-  
-   padding: 5rem ;
+    max-width : 100%;  
+   padding: 4rem 0rem ;
   
     }
 .detailsImg{
   width: 95%;
+}
+
+.buttons{ 
+  padding: 2rem 2rem;
 }
