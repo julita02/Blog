@@ -1,5 +1,5 @@
 
-const form = document.querySelector('form');
+const blogForm = document.getElementById('createBlog');
 
 const Response =async res => {
   const isJson = res.headers.get('content-type')?.includes('application/json');
@@ -19,10 +19,10 @@ const createPost = async (e) =>
   e.preventDefault();
 
   const doc = {
-    title: form.title.value,
-    imageUrl : form.image.value,        
-    content: form.body.value,
-    author: form.author.value,
+    title: blogForm.title.value,
+    imageUrl : blogForm.image.value,        
+    content: blogForm.body.value,
+    author: blogForm.author.value,
 
   }
 const Post = {
@@ -44,4 +44,13 @@ const Post = {
 
 }
 
-form.addEventListener('submit',createPost);
+
+blogForm.addEventListener('submit',createPost);
+
+
+ window.addEventListener('mouseup',function(event){
+        var createBlog = document.getElementById('createBlog');
+        if(event.target != createBlog && event.target.parentNode != createBlog){
+            createBlog.style.display = 'none';
+        }
+  });  

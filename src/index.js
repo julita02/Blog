@@ -31,7 +31,7 @@ const fetchPosts =url=> {
             else {
              document.getElementById( "page-number" ).innerHTML = `Page ${ pageNumber( pageUrl) } of ${ pageNumber( parseLinkHeader( pageData[ 1 ] ).last ) }`;
              }             
-            //  console.log(pageData)
+             console.log(pageData)
         } );      
 }
 
@@ -49,7 +49,7 @@ const renderPosts = posts => {
            </div>  
     `    
     container.append( postBlog );
-    // console.log(posts)
+    console.log(posts)
     
 }
 
